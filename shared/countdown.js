@@ -22,6 +22,9 @@ const ParkCountdown = (() => {
   const stageTag = document.getElementById('sceneStage');
   const count = document.getElementById('sceneCount');
 
+  const stepMs = 1000;
+  const goMs = 800;
+  const steps = ['2', '1', '출발!'];
   let timers = [];
   function stopTimers() {
     timers.forEach(clearTimeout);
@@ -48,14 +51,14 @@ const ParkCountdown = (() => {
     count.textContent = reduced ? '출발!' : '3';
     if (!curtain.open) curtain.showModal();
     if (!reduced) {
-      ['2', '1', '출발!'].forEach((label, index) => {
+      steps.forEach((label, index) => {
         timers.push(
           setTimeout(
             () => {
               count.textContent = label;
               Park.tone([392]);
             },
-            (index + 1) * 330
+            (index + 1) * stepMs
           )
         );
       });
@@ -67,7 +70,7 @@ const ParkCountdown = (() => {
           curtain.close();
           onReady();
         },
-        reduced ? 60 : 1280
+        reduced ? goMs : steps.length * stepMs + goMs
       )
     );
   }
