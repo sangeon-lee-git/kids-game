@@ -2,6 +2,8 @@
 
 [놀이터 입장](https://sangeon-lee-git.github.io/kids-game/)
 
+[다음 작업을 위한 개발 인수인계](HANDOFF.md)
+
 50개월 아이가 게임을 고르고 정원이 또는 도겸이와 함께 노는 한국어 놀이공원입니다. 첫 입장 때 `아빠's make`가 잠깐 흘러갑니다. 동작 줄이기를 켠 기기에서는 이동 효과를 생략합니다.
 
 | 구역 | 놀이 | 게임 폴더 |
@@ -29,6 +31,8 @@
 
 ## 음성과 글꼴
 
-자연스러운 한국어 안내는 Supertonic 3 F1으로 로컬 생성한 Ogg 파일을 사용합니다. 기존 한글 안내 46개와 새 놀이·동물 단서 안내 16개를 포함합니다. 음성 모델 revision은 `aafc6e32416a594460b32413efc49d7fe4ce6d46`입니다. [공식 코드 · MIT](https://github.com/supertone-oss-archive/supertonic) · [모델 · OpenRAIL-M](https://huggingface.co/supertone-oss-archive/supertonic-3)
+첫 화면의 **목소리**에서 같은 문장을 미리 듣고 여덟 게임에 쓸 목소리를 고릅니다. 기본값은 Qwen3-TTS 1.7B의 한국어 화자 소희입니다. 한글 안내와 칭찬은 아이에게 건네는 문장으로 다시 썼습니다. 게임은 미리 생성한 Ogg 파일을 재생합니다. 실제 대사는 [소희 음성 목록](shared/voice/sohee/lines.js)에 있습니다. [Qwen3-TTS 모델 · Apache 2.0](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice)
+
+기존 목소리 F1도 선택할 수 있습니다. 한글 안내 46개와 새 놀이·동물 단서 16개를 Supertonic 3 F1으로 생성했습니다. 모델 revision은 `aafc6e32416a594460b32413efc49d7fe4ce6d46`입니다. 기기 한국어 음성을 선택하면 운영체제 또는 브라우저의 음성 서비스를 사용합니다. [Supertonic 공식 코드 · MIT](https://github.com/supertone-oss-archive/supertonic) · [F1 모델 · OpenRAIL-M](https://huggingface.co/supertone-oss-archive/supertonic-3)
 
 놀이공원 제목과 버튼은 주아체를 사용합니다. [글꼴 라이선스](shared/font/OFL.txt)

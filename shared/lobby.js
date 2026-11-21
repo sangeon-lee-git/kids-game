@@ -67,7 +67,8 @@ function showTickets(area) {
   byId('badgeCount').textContent =
     '★ ' +
     Park.games.filter((g) => Park.read('clear.' + g.id) === '1').length +
-    ' / 8';
+    ' / ' +
+    Park.games.length;
   byId('badgeCount').setAttribute(
     'aria-label',
     '완료한 놀이 ' + byId('badgeCount').textContent.slice(2)
@@ -128,6 +129,30 @@ byId('back').onclick = () => {
   location.hash = activeGame.area;
 };
 Park.soundButton(byId('sound'));
+const voiceDialog = byId('voiceDialog'),
+  voiceList = byId('voiceList');
+function audition() {
+  Park.narrate([['count', '별이 몇 개인지 세어 봐.']], {
+    voice: voiceList.value,
+    preview: true,
+  });
+}
+byId('voiceOpen').onclick = () => {
+  Park.hush();
+  voiceList.value = Park.voiceChoice();
+  voiceDialog.showModal();
+};
+voiceList.onchange = audition;
+byId('voiceListen').onclick = audition;
+byId('voiceClose').onclick = () => voiceDialog.close();
+byId('voiceSave').onclick = () => {
+  Park.write('voice', voiceList.value);
+  voiceDialog.close();
+};
+voiceDialog.addEventListener('close', () => {
+  Park.hush();
+  byId('voiceOpen').focus();
+});
 window.addEventListener('hashchange', route);
 window.addEventListener('pageshow', (event) => {
   if (event.persisted) route();

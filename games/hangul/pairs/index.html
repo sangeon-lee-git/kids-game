@@ -6,9 +6,10 @@
     <meta name="theme-color" content="#1b1835" />
     <title>한글 짝꿍 카드 · 별빛 놀이공원</title>
     <link rel="stylesheet" href="../../../shared/hangul/field.css" />
-    <script defer src="../../../shared/park.js"></script>
+    <script defer src="../../../shared/voice/sohee/lines.js"></script>
+    <script defer src="../../../shared/park.js?v=sohee1"></script>
     <script defer src="../../../shared/hangul/words.js"></script>
-    <script defer src="../../../shared/hangul/controls.js"></script>
+    <script defer src="../../../shared/hangul/controls.js?v=sohee1"></script>
     <script defer src="game.js"></script>
   </head>
   <body class="memory-mode" data-game="pairs">
@@ -136,7 +137,8 @@
             </select></label
           ><label
             >안내 음성<select id="voiceSelect">
-              <option value="natural">자연스러운 음성 (Supertonic)</option>
+              <option value="sohee">소희 · 새 목소리</option>
+              <option value="classic">기존 목소리 · F1</option>
               <option value="device">기기 기본 음성</option>
             </select></label
           ><button class="small" id="voicePreview">▶ 목소리 들어 보기</button>

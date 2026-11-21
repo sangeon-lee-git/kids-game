@@ -120,24 +120,56 @@ const Park = (() => {
     }
     window.speechSynthesis?.cancel();
   }
-  function narrate(lines) {
+  function voiceChoice() {
+    const value = read('voice');
+    return ['sohee', 'classic', 'device'].includes(value) ? value : 'sohee';
+  }
+  function narrate(lines, { voice = voiceChoice(), preview = false } = {}) {
     hush();
-    if (!rememberedSound()) return;
+    if (!preview && !rememberedSound()) return;
     const token = generation;
     function play(i) {
       if (i >= lines.length || token !== generation) return;
-      const [key, words] = lines[i];
-      function fallback() {
+      const [key, words, group = 'park'] = lines[i];
+      const path = group + '/' + key;
+      function device(onError) {
         if (token !== generation || !window.speechSynthesis) return;
-        const u = new SpeechSynthesisUtterance(words);
+        const u = new SpeechSynthesisUtterance(
+          voice === 'classic' ? words : SoheeLines[path] || words
+        );
         u.lang = 'ko-KR';
-        u.rate = 0.92;
+        u.rate = 0.96;
+        const korean = window.speechSynthesis
+          .getVoices()
+          .filter((v) => /^ko(?:-|$)/i.test(v.lang));
+        u.voice =
+          korean.find((v) =>
+            /Natural|Neural|Premium|Enhanced|SunHi|Google/i.test(v.name)
+          ) ||
+          korean[0] ||
+          null;
         u.onend = () => play(i + 1);
+        if (onError)
+          u.onerror = () => {
+            if (token === generation) onError();
+          };
         window.speechSynthesis.speak(u);
       }
-      clip = new Audio(url('shared/voice/park/' + key + '.ogg'));
-      clip.onended = () => play(i + 1);
-      clip.play().catch(fallback);
+      function recording(prefix, fallback) {
+        if (token !== generation) return;
+        const audio = new Audio(url('shared/voice/' + prefix + path + '.ogg'));
+        clip = audio;
+        audio.onended = () => play(i + 1);
+        audio.play().catch(() => {
+          if (token === generation) fallback();
+        });
+      }
+      const classic = () => recording('', () => device());
+      if (voice === 'device' && window.speechSynthesis) {
+        device(() => recording('', () => {}));
+      } else if (voice === 'sohee' && Object.hasOwn(SoheeLines, path)) {
+        recording('sohee/', classic);
+      } else classic();
     }
     play(0);
   }
@@ -198,6 +230,7 @@ const Park = (() => {
     hero,
     rememberedSound,
     narrate,
+    voiceChoice,
     hush,
     tone,
     soundButton,

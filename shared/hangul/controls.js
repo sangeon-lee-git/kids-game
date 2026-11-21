@@ -11,10 +11,7 @@ let mode = 'match',
   index = 0,
   mistakes = 0,
   phase = 'starting';
-let sound = Park.rememberedSound(),
-  voiceMode = 'natural',
-  voiceAudio,
-  voiceGeneration = 0;
+let sound = Park.rememberedSound();
 let audioContext,
   nextTimer,
   effectTimers = [],
@@ -42,37 +39,12 @@ function uiTone(kind) {
   );
 }
 function stopVoice() {
-  voiceGeneration++;
-  if (voiceAudio) {
-    voiceAudio.pause();
-    voiceAudio = null;
-  }
-  window.speechSynthesis?.cancel();
+  Park.hush();
 }
-function deviceVoice(text) {
-  if (!sound || !window.speechSynthesis) return;
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'ko-KR';
-  u.rate = 0.94;
-  const voices = window.speechSynthesis
-    .getVoices()
-    .filter((v) => v.lang.startsWith('ko'));
-  u.voice =
-    voices.find((v) => /Natural|Online|SunHi|Sun-Hi|Google/i.test(v.name)) ||
-    voices[0] ||
-    null;
-  window.speechSynthesis.speak(u);
-}
-function say(text, selectedMode = voiceMode) {
-  stopVoice();
-  if (!sound) return;
-  const token = voiceGeneration;
-  if (selectedMode === 'natural' && Object.hasOwn(clips, text)) {
-    voiceAudio = new Audio(Park.url('shared/voice/hangul/' + clips[text]));
-    voiceAudio.play().catch(() => {
-      if (token === voiceGeneration) deviceVoice(text);
-    });
-  } else deviceVoice(text);
+function say(text, selectedMode = Park.voiceChoice()) {
+  if (!sound || !Object.hasOwn(clips, text)) return;
+  const key = clips[text].slice(0, -4);
+  Park.narrate([[key, text, 'hangul']], { voice: selectedMode });
 }
 function lockScene() {
   document.querySelector('main').inert = [
@@ -179,7 +151,7 @@ function startHangul() {
     });
   $('settings').onclick = () => {
     stopVoice();
-    $('voiceSelect').value = voiceMode;
+    $('voiceSelect').value = Park.voiceChoice();
     $('countSelect').value = String(optionCount);
     if (isBattle) {
       $('modeSelect').value = mode;
@@ -196,7 +168,7 @@ function startHangul() {
     else $('voicePreview').textContent = '상단에서 소리를 먼저 켜 주세요';
   };
   $('apply').onclick = () => {
-    voiceMode = $('voiceSelect').value;
+    Park.write('voice', $('voiceSelect').value);
     optionCount = Number($('countSelect').value);
     round = 1;
     if (isBattle) {

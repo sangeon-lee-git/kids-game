@@ -651,3 +651,60 @@ h1[tabindex='-1']:focus,
 h2[tabindex='-1']:focus {
   outline: none;
 }
+/* Family voice settings */
+#voiceDialog {
+  width: min(370px, calc(100% - 28px));
+  border: 2px solid #ab91b4;
+  border-radius: 20px;
+  padding: 24px;
+  background: #2f2746;
+  color: #fff2d8;
+  box-shadow: 0 10px 40px #130d26aa;
+}
+#voiceDialog::backdrop {
+  background: #160f2aba;
+}
+#voiceDialog h2 {
+  margin: 0 0 10px;
+  font: 30px var(--font);
+}
+#voiceDialog label {
+  display: block;
+  font-size: 16px;
+}
+#voiceDialog select {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 10px;
+  font: 17px var(--font);
+}
+#voiceDialog .back {
+  float: none;
+}
+.voice-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 22px;
+}
+.voice-actions .hero-start {
+  margin: 0;
+  background: #ffd687;
+  color: #382e45;
+  border: 0;
+  min-height: 42px;
+}
+@media (max-width: 420px) {
+  .bar-actions {
+    gap: 4px;
+  }
+  .bar-actions .sound {
+    padding-inline: 8px;
+  }
+  .park-bar {
+    padding-inline: 12px;
+  }
+}

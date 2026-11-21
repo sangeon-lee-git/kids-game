@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#191632" />
     <title>정원이와 도겸이의 별빛 놀이공원</title>
-    <link rel="stylesheet" href="shared/park.css" />
+    <link rel="stylesheet" href="shared/park.css?v=sohee1" />
     <link rel="preload" as="image" href="shared/art/park-panorama.jpg" />
-    <script src="shared/park.js" defer></script>
-    <script src="shared/lobby.js" defer></script>
+    <script defer src="shared/voice/sohee/lines.js"></script>
+    <script src="shared/park.js?v=sohee1" defer></script>
+    <script src="shared/lobby.js?v=sohee1" defer></script>
   </head>
   <body>
     <div class="park-frame">
@@ -22,6 +23,7 @@
             class="badge-count"
             title="완료한 놀이 수"
           ></span
+          ><button class="sound" id="voiceOpen" type="button">목소리</button
           ><button class="sound" id="sound" type="button"></button>
         </div>
       </header>
@@ -52,6 +54,22 @@
         </div>
       </main>
     </div>
+    <dialog id="voiceDialog" aria-labelledby="voiceTitle">
+      <h2 id="voiceTitle">안내 목소리</h2>
+      <label for="voiceList">누구의 목소리로 놀까요?</label>
+      <select id="voiceList">
+        <option value="sohee">소희 · 새 목소리</option>
+        <option value="classic">기존 목소리 · F1</option>
+        <option value="device">기기 한국어 음성</option>
+      </select>
+      <button class="back" id="voiceListen" type="button">♫ 미리 듣기</button>
+      <div class="voice-actions">
+        <button class="back" id="voiceClose" type="button">닫기</button
+        ><button class="hero-start" id="voiceSave" type="button">
+          이 목소리로 놀기
+        </button>
+      </div>
+    </dialog>
     <noscript
       >게임을 실행하려면 브라우저에서 자바스크립트를 켜 주세요.</noscript
     >
