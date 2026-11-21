@@ -10,11 +10,12 @@
 | 배포 방식 | GitHub Pages가 `main` 브랜치의 루트 `/`를 게시한다. 빌드 단계는 없다. |
 | 이전 한글 게임 | [test 저장소](https://github.com/sangeon-lee-git/test)에서 대전과 짝꿍 카드를 가져왔다. 새 기능은 위의 작업 사본에 반영한다. |
 
-## 지금 이어받을 작업
+## 이어받는 기준 버전
 
-- **게시된 기능** — [첫 게임 배포 커밋](https://github.com/sangeon-lee-git/kids-game/commit/3f36e7286ff100fd4b1550a47b6ace0864e60862)에 네 구역, 여덟 게임, 캐릭터 두 명과 애착인형이 들어 있다. 이 버전은 Supertonic F1 안내를 재생한다.
-- **로컬에서 준비한 기능** — 기본 화자를 Qwen3-TTS의 한국어 소희로 바꾸고, 첫 화면에서 소희·기존 F1·기기 음성을 비교할 수 있도록 연결했다. 한국어 안내 62개를 생성했고, 그림 문제와 완료 인사의 문장을 다듬었다. 새 음성 전체는 아직 공개 게임에 반영하기 전이다.
-- **다음 실행 순서** — 수정한 녹음과 대본이 일치하는지 확인한다. 음량을 맞춘 Ogg 파일과 대본 목록을 함께 반영한다. 아래 검증을 완료하고 `main`에 푸시한 뒤 Pages 성공 여부와 공개 주소의 ‘목소리’ 메뉴를 확인한다.
+- [놀이공원 첫 배포](https://github.com/sangeon-lee-git/kids-game/commit/3f36e7286ff100fd4b1550a47b6ace0864e60862)에서 네 구역, 여덟 게임, 캐릭터 두 명과 애착인형을 한 저장소로 묶었다.
+- [공통 목소리 업데이트](https://github.com/sangeon-lee-git/kids-game/commit/2307ca193922210230db1941e335a7514dfb046d)에서는 한국어 소희를 기본 화자로 설정했다. 첫 화면의 **목소리 → 미리 듣기 → 이 목소리로 놀기**에서 소희·기존 F1·기기 한국어 음성을 비교하고 선택한다. 선택값은 여덟 게임에서 함께 사용한다.
+- **확인한 범위** — 두 캐릭터로 게임 여덟 개의 완료·힌트·다시 시작을 검사했다. 브라우저에서 도겸이의 한글 대전과 길찾기, 작은 세로 화면에서 정원이의 숫자 기차를 플레이했다. 소희 62개와 F1 62개가 연결되며, 소희 녹음은 24 kHz 모노 Ogg로 디코딩과 음량 검사를 통과했다.
+- **다음 작업을 시작할 때** — 작업 사본에서 `git status -sb`와 `git log -1 --oneline`을 확인한다. 수정할 게임은 아래 표에서 찾고, 여러 게임에 영향을 주는 변경은 메인 화면과 해당 구역까지 함께 검증한다.
 
 ## 놀이 흐름과 공통 캐릭터
 
@@ -50,14 +51,16 @@
 
 1. `games/<구역>/<게임 ID>/`에 `index.html`과 `game.js`를 만든다. 공통 진행 화면을 쓰는 새 게임은 [숫자 기차](games/numbers/train/game.js)의 `activity.deck()`과 `activity.show()`를 참고한다.
 2. [shared/park.js](shared/park.js)의 `games` 배열에 ID, 구역, 한국어 이름, 놀이 설명과 학습 항목을 등록한다. [shared/lobby.js](shared/lobby.js)의 `artPieces`에 같은 ID로 입장권 그림을 연결한다.
-3. 시간제한이나 오답 감점 없이 다시 고를 수 있게 한다. 진행·소리·완료 도장은 기존 공통 처리를 사용한다. 게임 수가 바뀌면 첫 화면의 도장 총수도 확인한다.
+3. 시간제한이나 오답 감점 없이 다시 고를 수 있게 한다. 진행·소리·완료 도장은 기존 공통 처리를 사용한다. 첫 화면의 도장 총수는 등록된 게임 수로 계산한다.
 4. 캐릭터 두 명으로 각각 시작해 실제 게임 주소, 애착인형, 완료와 다시 시작, 놀이 선택 복귀를 확인한다.
 
 ## 음성 파일 관리
 
 기존 F1 음성은 `shared/voice/hangul/`의 한글 46개와 `shared/voice/park/`의 공통 안내·단서 16개다. 한글 문제 문장과 파일 이름의 대응은 [shared/hangul/words.js](shared/hangul/words.js)에 있다.
 
-소희 음성은 `shared/voice/sohee/` 아래 같은 키의 Ogg를 사용한다. `lines.js`는 실제로 읽은 한국어 대본을 담는다. 예를 들어 숫자 세기 키는 `park/count`이고 파일은 `park/count.ogg`다. 문장을 변경할 때는 대본과 녹음을 함께 갱신한다. 게임에는 생성한 음성을 넣으며 별도 API 키 없이 재생된다. [소희 모델](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice) · [F1 모델](https://huggingface.co/supertone-oss-archive/supertonic-3)
+소희 음성은 [shared/voice/sohee](shared/voice/sohee/) 아래 같은 키의 Ogg를 사용한다. [lines.js](shared/voice/sohee/lines.js)는 실제로 읽은 한국어 대본을 담는다. 예를 들어 숫자 세기 키는 `park/count`이고 파일은 [park/count.ogg](shared/voice/sohee/park/count.ogg)다. 문장을 변경할 때는 대본과 녹음을 함께 갱신한다. 게임에는 생성한 음성을 넣으며 별도 API 키 없이 재생된다.
+
+현재 소희 녹음은 Qwen3-TTS 1.7B CustomVoice의 한국어 화자 `sohee`로 제작했다. 추가 제작 시 같은 화자로 아이에게 천천히 말을 건네는 톤을 사용하고, 앞뒤가 잘리지 않았는지와 기존 클립과의 음량 차이를 확인한다. 한글 그림 문제의 대사 예시는 “가방은 ‘가’로 시작해. ‘가’를 골라 봐.”다. [소희 모델](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice) · [F1 모델](https://huggingface.co/supertone-oss-archive/supertonic-3)
 
 ## 로컬 검증과 배포
 
