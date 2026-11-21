@@ -1,0 +1,653 @@
+@font-face {
+  font-family: Jua;
+  src: url(font/Jua-Regular.ttf) format('truetype');
+  font-display: swap;
+}
+:root {
+  color-scheme: dark;
+  --ink: #fff6e9;
+  --navy: #1b1835;
+  --gold: #ffdb84;
+  --font: Jua, 'Malgun Gothic', sans-serif;
+  --body: 'Malgun Gothic', system-ui, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+body {
+  margin: 0;
+  background: #14122a;
+  color: var(--ink);
+  font: 16px/1.5 var(--body);
+  word-break: keep-all;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+a {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 4px solid #ffe997;
+  outline-offset: 4px;
+}
+.park-frame {
+  max-width: 1680px;
+  margin: auto;
+  min-height: 100svh;
+  background: var(--navy);
+  box-shadow: 0 0 100px #100d23;
+}
+.park-bar {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #19162f;
+  padding: 0 clamp(18px, 6vw, 96px);
+  border-bottom: 1px solid #47405b;
+  position: relative;
+  z-index: 2;
+}
+.brand,
+.bar-actions {
+  display: flex;
+  align-items: center;
+}
+.brand {
+  gap: 9px;
+  font: 21px var(--font);
+  letter-spacing: -0.045em;
+}
+.brand-star {
+  color: #ffd46c;
+  font-size: 27px;
+  transform: rotate(-12deg);
+  text-shadow: 2px 2px #a04a64;
+}
+.bar-actions {
+  gap: 18px;
+}
+.badge-count,
+.sound,
+.back {
+  font: 16px var(--font);
+}
+.badge-count {
+  color: #ffdc92;
+}
+.sound,
+.back {
+  padding: 8px 14px;
+  border: 1px solid #625875;
+  border-radius: 24px;
+  background: #302a49;
+  color: #fff0dc;
+  min-height: 36px;
+}
+.panorama {
+  height: clamp(280px, 45vh, 500px);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #24204c url(art/park-panorama.jpg) center 54% / cover no-repeat;
+  border-bottom: 3px solid #e9ac73;
+}
+.panorama::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #15152c55, transparent 62%);
+  z-index: -1;
+}
+.title-block {
+  position: absolute;
+  left: clamp(25px, 8vw, 135px);
+  top: 50%;
+  transform: translateY(-50%) rotate(-3deg);
+}
+.family {
+  margin: 0 0 0.55em;
+  font: clamp(18px, 1.85vw, 31px) var(--font);
+  color: #ffdbb5;
+  letter-spacing: 0.015em;
+  text-shadow: 0 3px 3px #261829;
+}
+.family span {
+  color: #ffcf70;
+  margin-right: 4px;
+}
+.title-block h1 {
+  margin: 0;
+  font: clamp(55px, min(7.3vw, 10.8vh), 116px) / 0.99 var(--font);
+  letter-spacing: -0.06em;
+  color: #fff2ce;
+  -webkit-text-stroke: 1px #ffeed1;
+  text-shadow:
+    0 4px #be7e7f,
+    0 8px #54324f,
+    0 11px 18px #18132e88;
+}
+.title-block h1 span {
+  color: #ffd875;
+  -webkit-text-stroke-color: #ffdc89;
+}
+.signature {
+  position: absolute;
+  left: clamp(22px, 8vw, 135px);
+  bottom: 7%;
+  font:
+    italic clamp(16px, 1.6vw, 24px) Georgia,
+    var(--font);
+  color: #ffe4c8;
+  opacity: 0;
+  pointer-events: none;
+  animation: signature 3.8s 0.1s ease-in-out 1 both;
+  text-shadow: 0 1px 5px #000;
+}
+.signature i {
+  color: var(--gold);
+}
+@keyframes signature {
+  0% {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  20%,
+  68% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(42px);
+  }
+}
+.arcade {
+  max-width: 1400px;
+  padding: clamp(16px, 2.8vh, 34px) clamp(18px, 6vw, 96px) 32px;
+  margin: auto;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.section-head h2 {
+  margin: 0;
+  font: clamp(24px, 2.3vw, 34px) var(--font);
+}
+.tickets-label {
+  font: 700 12px/1 system-ui;
+  letter-spacing: 0.17em;
+  color: #c4abc9;
+}
+.areas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+.area {
+  min-height: 48px;
+  border: 1px solid #5a506d;
+  background: #2c2743;
+  color: #ded2e7;
+  border-radius: 12px;
+  font: clamp(17px, 1.5vw, 23px) var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.area span {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  font-size: 19px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  color: var(--tab-color);
+}
+.area[aria-pressed='true'] {
+  background: var(--tab-color);
+  color: #362435;
+  border-color: var(--tab-color);
+  box-shadow: 0 3px 0 #100f22;
+}
+.area[aria-pressed='true'] span {
+  background: #fff5;
+  color: inherit;
+}
+.tickets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+.ticket {
+  --paper: #f5d4e0;
+  --tile: #87619f;
+  --light: #ceb4e9;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  min-width: 0;
+  min-height: 116px;
+  text-align: left;
+  background: var(--paper);
+  border: 0;
+  border-radius: 17px;
+  box-shadow:
+    0 5px #0e0b22,
+    0 6px 18px #1111;
+  color: #2d233b;
+  overflow: hidden;
+  transition: transform 0.18s;
+}
+.ticket:nth-child(even) {
+  --paper: #ffdfb0;
+  --tile: #de8666;
+  --light: #ffd1a3;
+}
+.ticket[data-game='count'],
+.ticket[data-game='basket'] {
+  --paper: #fbe3a6;
+  --tile: #e9a454;
+  --light: #ffdf8f;
+}
+.ticket[data-game='pattern'],
+.ticket[data-game='trail'] {
+  --paper: #c5e8da;
+  --tile: #559b98;
+  --light: #c1e8b9;
+}
+.ticket[data-game='train'],
+.ticket[data-game='detective'] {
+  --paper: #cbdff0;
+  --tile: #677fb2;
+  --light: #c7c9fd;
+}
+.ticket:hover,
+.hero-choice:hover {
+  transform: translateY(-3px);
+}
+.ticket:active,
+.hero-choice:active {
+  transform: translateY(2px);
+}
+.ticket-copy {
+  min-width: 0;
+  flex: 1;
+  padding: 14px 10px 14px 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ticket-copy small {
+  font: 750 10px/1.2 system-ui;
+  color: #655267;
+  letter-spacing: 0.14em;
+}
+.ticket-copy strong {
+  font: clamp(20px, 1.85vw, 28px) / 1.1 var(--font);
+  letter-spacing: -0.04em;
+  margin: 6px 0;
+}
+.ticket-copy > span {
+  font: 600 14px/1.4 var(--body);
+  color: #534452;
+}
+.ticket-stub {
+  width: 42px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  color: #665065;
+  position: relative;
+  border-left: 2px dashed #79687a55;
+  font-size: 16px;
+}
+.ticket-stub::before,
+.ticket-stub::after {
+  content: '';
+  position: absolute;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--navy);
+}
+.ticket-stub::before {
+  top: -8px;
+}
+.ticket-stub::after {
+  bottom: -8px;
+}
+.ticket-art {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  width: clamp(80px, 8.6vw, 141px);
+  flex: none;
+  background: radial-gradient(ellipse at 57% 40%, var(--light), var(--tile));
+  border-right: 1px solid #51435935;
+}
+.ticket-art::before {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border: 1px solid #fff8;
+  border-radius: 50%;
+  transform: rotate(-24deg) scaleY(0.64);
+  z-index: -1;
+}
+.ticket-art i,
+.ticket-art b {
+  position: absolute;
+  color: #fff3bd;
+  font: 21px Georgia;
+  text-shadow: 0 2px #a67586;
+}
+.ticket-art i {
+  left: 9%;
+  top: 9%;
+}
+.ticket-art b {
+  right: 8%;
+  bottom: 13%;
+}
+.wand {
+  display: block;
+  position: relative;
+  margin: -18px -22px 0 0;
+  color: #ffdf6e;
+  font: 56px/1 Georgia;
+  transform: rotate(17deg);
+  text-shadow:
+    2px 3px #98597d,
+    -1px -1px #fff3ae;
+}
+.wand::before {
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 45px;
+  background: repeating-linear-gradient(0deg, #fff0be 0 7px, #f687a8 7px 14px);
+  border: 1px solid #9b6689;
+  left: 21px;
+  top: 32px;
+  transform: rotate(28deg);
+  transform-origin: top;
+  z-index: -1;
+  border-radius: 4px;
+}
+.card-one,
+.card-two {
+  position: absolute;
+  padding: 4px;
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 54px;
+  border: 3px solid #fff2ce;
+  border-radius: 7px;
+  font: 29px var(--font);
+  box-shadow: 2px 3px #985f68;
+}
+.card-one {
+  background: #79b8b0;
+  color: #fff6da;
+  transform: translate(-12px, 2px) rotate(-19deg);
+}
+.card-two {
+  background: #f98fa4;
+  color: #fff1b1;
+  transform: translate(13px, -3px) rotate(13deg);
+}
+.big-symbol {
+  font:
+    49px/1 'Segoe UI Emoji',
+    sans-serif;
+  filter: drop-shadow(2px 5px 0 #0002);
+  transform: rotate(-8deg);
+}
+.character-screen {
+  min-height: calc(100svh - 58px);
+  display: grid;
+  place-items: center;
+  padding: 24px 16px 40px;
+  background:
+    linear-gradient(#1e193bd9, #1e193be8),
+    url(art/park-panorama.jpg) center/cover;
+}
+.choose-wrap {
+  width: min(680px, 100%);
+  text-align: center;
+}
+.back {
+  float: left;
+}
+.selected-game {
+  clear: both;
+  padding-top: 14px;
+  color: #ffd58a;
+  font: 18px var(--font);
+  margin: 0 0 8px;
+}
+.choose-wrap h1,
+.play-title {
+  margin: 0 0 20px;
+  font: clamp(32px, 5vw, 58px) / 1.1 var(--font);
+  letter-spacing: -0.04em;
+}
+.heroes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.hero-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 24px;
+  border: 2px solid #bce6f3;
+  background: radial-gradient(ellipse at 50% 40%, #d3eff4, #95c0d4);
+  color: #273452;
+  padding: 15px 8px 18px;
+  transition: transform 0.18s;
+  box-shadow: 0 5px #3c3d62;
+}
+.hero-choice.dogyeom {
+  border-color: #ffddb3;
+  background: radial-gradient(ellipse at 50% 40%, #fff0d5, #f3bb91);
+  color: #593743;
+}
+.pedestal {
+  position: relative;
+  width: 100%;
+  height: clamp(134px, 22vw, 235px);
+  display: grid;
+  place-items: center;
+}
+.pedestal::before {
+  content: '';
+  position: absolute;
+  background: #66628a44;
+  width: 63%;
+  height: 11%;
+  border-radius: 50%;
+  bottom: 3%;
+}
+.pedestal > img:first-child {
+  height: 96%;
+  width: 83%;
+  object-fit: contain;
+  position: relative;
+  filter: drop-shadow(0 4px 2px #5c426033);
+}
+.pedestal .plush {
+  position: absolute;
+  right: 4%;
+  bottom: 5%;
+  width: 28%;
+  height: 37%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 1px #76597555);
+}
+.hero-choice strong {
+  font: 32px var(--font);
+  margin-top: 6px;
+}
+.pet-name {
+  font: 16px var(--font);
+}
+.hero-start {
+  margin-top: 12px;
+  padding: 8px 18px;
+  border-radius: 50px;
+  color: #fff2d8;
+  background: #36304f;
+  font: 17px var(--font);
+}
+@media (max-width: 680px) {
+  .park-bar {
+    height: 52px;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  .bar-actions {
+    gap: 8px;
+  }
+  .badge-count {
+    font-size: 14px;
+  }
+  .sound {
+    font-size: 14px;
+    padding: 7px 10px;
+  }
+  .panorama {
+    height: clamp(225px, 34svh, 300px);
+    background-position: 58% 50%;
+  }
+  .panorama::before {
+    background: linear-gradient(90deg, #19163388, transparent 78%);
+  }
+  .title-block {
+    left: 7%;
+  }
+  .title-block h1 {
+    font-size: clamp(52px, 11vw, 80px);
+  }
+  .signature {
+    bottom: 5%;
+  }
+  .arcade {
+    padding-top: 17px;
+  }
+  .areas {
+    gap: 5px;
+  }
+  .area {
+    padding: 3px;
+    min-height: 45px;
+    gap: 5px;
+    border-radius: 9px;
+  }
+  .area span {
+    width: 20px;
+    height: 21px;
+    font-size: 16px;
+  }
+  .tickets {
+    grid-template-columns: 1fr;
+    gap: 13px;
+    margin-top: 14px;
+  }
+  .ticket {
+    min-height: 89px;
+  }
+  .ticket-art {
+    width: 82px;
+  }
+  .ticket-copy {
+    padding: 10px 8px 10px 13px;
+  }
+  .ticket-stub {
+    width: 32px;
+  }
+  .section-head {
+    margin-bottom: 9px;
+  }
+  .heroes {
+    gap: 10px;
+  }
+  .hero-choice {
+    border-radius: 19px;
+  }
+  .hero-choice strong {
+    font-size: 26px;
+  }
+  .tickets-label {
+    font-size: 10px;
+  }
+}
+@media (max-width: 345px) {
+  .area span {
+    display: none;
+  }
+  .ticket-copy > span {
+    font-size: 13px;
+  }
+  .ticket-art {
+    width: 64px;
+  }
+  .badge-count {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .signature {
+    display: none;
+  }
+}
+.pedestal > img:first-child {
+  position: absolute;
+  inset: 0 10% auto;
+  width: 80%;
+  height: 96%;
+}
+.ticket-copy small {
+  font: 14px var(--font);
+  letter-spacing: 0;
+}
+h1[tabindex='-1']:focus,
+h2[tabindex='-1']:focus {
+  outline: none;
+}

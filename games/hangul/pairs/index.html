@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#1b1835" />
+    <title>한글 짝꿍 카드 · 별빛 놀이공원</title>
+    <link rel="stylesheet" href="../../../shared/hangul/field.css" />
+    <script defer src="../../../shared/park.js"></script>
+    <script defer src="../../../shared/hangul/words.js"></script>
+    <script defer src="../../../shared/hangul/controls.js"></script>
+    <script defer src="game.js"></script>
+  </head>
+  <body class="memory-mode" data-game="pairs">
+    <main class="shell">
+      <header>
+        <div class="brand"><span>ㅎ</span>별빛 놀이공원</div>
+        <div class="header-actions">
+          <div id="petLabel">
+            <img id="petPortrait" alt="" /><span>애착인형</span>
+          </div>
+          <button class="small" id="menuButton">놀이 선택</button
+          ><button class="small" id="sound" aria-pressed="true">
+            ♪ 소리 켜짐</button
+          ><button class="small" id="settings">보호자 설정</button>
+        </div>
+      </header>
+      <section class="intro">
+        <div>
+          <h1 id="gameTitle">한글 짝꿍 카드</h1>
+          <p>글자와 그림 친구를 찾아요!</p>
+        </div>
+        <div class="round-label" id="roundLabel">연습 대전 · 1 / 3</div>
+      </section>
+      <section
+        class="memory-panel"
+        id="memoryPanel"
+        aria-label="한글 짝꿍 카드 놀이"
+      >
+        <div class="memory-header">
+          <img id="memoryHero" alt="" />
+          <div>
+            <h2>한글 짝꿍 카드</h2>
+            <p id="memoryGuide">글자와 그림의 첫 글자가 같으면 짝꿍!</p>
+          </div>
+          <div class="memory-progress" id="memoryProgress">0 / 3 쌍</div>
+        </div>
+        <div class="memory-grid" id="memoryGrid"></div>
+        <p
+          class="memory-status"
+          id="memoryStatus"
+          role="status"
+          aria-live="polite"
+        >
+          카드 두 장을 뒤집어 보세요.
+        </p>
+        <div class="memory-controls">
+          <button class="small" id="memoryHint">👀 잠깐 모두 보기</button
+          ><button class="small" id="memoryRestart">↻ 다시 섞기</button>
+        </div>
+      </section>
+      <footer class="bottom">
+        <span
+          >✦ <strong>천천히 해도 괜찮아.</strong> 시간제한도, 게임 오버도
+          없어요.</span
+        ><span id="playNote">글자와 그림 짝꿍을 찾아요</span>
+      </footer>
+    </main>
+    <div
+      class="scene-curtain"
+      id="sceneCurtain"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="sceneLabel"
+      hidden
+    >
+      <button id="sceneCancel">← 돌아가기</button>
+      <div class="scene-load">
+        <img id="sceneAvatar" alt="" />
+        <p class="stage-tag" id="sceneStage">MAGIC ADVENTURE</p>
+        <div
+          class="scene-count"
+          id="sceneCount"
+          role="status"
+          aria-live="polite"
+        >
+          준비!
+        </div>
+        <div class="scene-label" id="sceneLabel">숲속 별빛 대전으로!</div>
+      </div>
+    </div>
+    <div
+      class="overlay"
+      id="result"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resultTitle"
+      hidden
+    >
+      <div class="card">
+        <span class="badge" id="resultBadge">대전 성공!</span>
+        <div class="victory-ribbon" aria-hidden="true">CLEAR!</div>
+        <div class="victory-party"><img id="victoryPortrait" alt="" /></div>
+        <div class="victory-stars" aria-hidden="true">★ ★ ★</div>
+        <h2 id="resultTitle">멋진 한글 히어로!</h2>
+        <p id="resultText"></p>
+        <div
+          id="learned"
+          style="
+            font-size: 30px;
+            letter-spacing: 8px;
+            font-weight: 900;
+            margin: 20px 0;
+          "
+        ></div>
+        <button class="primary" id="again">한 번 더 대결하기 →</button
+        ><button class="close" id="home">놀이 고르기</button>
+      </div>
+    </div>
+    <div
+      class="overlay"
+      id="parent"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="parentTitle"
+      hidden
+    >
+      <div class="card">
+        <span class="badge">함께 놀아 주세요</span>
+        <h2 id="parentTitle">보호자 설정</h2>
+        <div class="parent-fields">
+          <label
+            >짝꿍 수<select id="countSelect">
+              <option value="3">3개</option>
+              <option value="2">2개 (더 쉽게)</option>
+            </select></label
+          ><label
+            >안내 음성<select id="voiceSelect">
+              <option value="natural">자연스러운 음성 (Supertonic)</option>
+              <option value="device">기기 기본 음성</option>
+            </select></label
+          ><button class="small" id="voicePreview">▶ 목소리 들어 보기</button>
+        </div>
+        <p>처음에는 짝꿍 두 쌍으로 시작해 보세요.</p>
+        <p class="fine">설정을 적용하면 카드를 새로 섞어요.</p>
+        <button class="primary" id="apply">적용하고 새로 시작</button
+        ><button class="close" id="parentClose">돌아가기</button>
+      </div>
+    </div>
+  </body>
+</html>

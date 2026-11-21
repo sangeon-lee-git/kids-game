@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#191632" />
+    <title>정원이와 도겸이의 별빛 놀이공원</title>
+    <link rel="stylesheet" href="shared/park.css" />
+    <link rel="preload" as="image" href="shared/art/park-panorama.jpg" />
+    <script src="shared/park.js" defer></script>
+    <script src="shared/lobby.js" defer></script>
+  </head>
+  <body>
+    <div class="park-frame">
+      <header class="park-bar">
+        <a class="brand" href="./index.html" aria-label="별빛 놀이공원 처음으로"
+          ><span class="brand-star" aria-hidden="true">★</span> 별빛 놀이공원</a
+        >
+        <div class="bar-actions">
+          <span
+            id="badgeCount"
+            class="badge-count"
+            title="완료한 놀이 수"
+          ></span
+          ><button class="sound" id="sound" type="button"></button>
+        </div>
+      </header>
+      <main id="lobby">
+        <section class="panorama" aria-labelledby="parkTitle">
+          <div class="title-block">
+            <p class="family">
+              <span aria-hidden="true">✦</span> 정원이와 도겸이의
+            </p>
+            <h1 id="parkTitle"><span>별빛</span><br />놀이공원</h1>
+          </div>
+          <div class="signature" id="signature" aria-hidden="true">
+            아빠's make <i>✦</i>
+          </div>
+        </section>
+        <section class="arcade" aria-labelledby="lobbyTitle">
+          <div class="section-head"><h2 id="lobbyTitle">놀이 고르기</h2></div>
+          <nav class="areas" id="areas" aria-label="놀이 구역"></nav>
+          <div class="tickets" id="tickets" aria-live="polite"></div>
+        </section>
+      </main>
+      <main class="character-screen" id="characterScreen" hidden>
+        <div class="choose-wrap">
+          <button class="back" id="back" type="button">‹ 놀이 고르기</button>
+          <p class="selected-game" id="chosenGame"></p>
+          <h1 id="chooseTitle" tabindex="-1">누구와 함께 놀까?</h1>
+          <div class="heroes" id="heroes"></div>
+        </div>
+      </main>
+    </div>
+    <noscript
+      >게임을 실행하려면 브라우저에서 자바스크립트를 켜 주세요.</noscript
+    >
+  </body>
+</html>
