@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#1b1835" />
     <title>한글 짝꿍 카드 · 별빛 놀이공원</title>
-    <link rel="stylesheet" href="../../../shared/hangul/field.css" />
+    <link rel="stylesheet" href="../../../shared/hangul/field.css?v=countdown1" />
+    <link rel="stylesheet" href="../../../shared/countdown.css" />
     <script defer src="../../../shared/voice/sohee/lines.js"></script>
     <script defer src="../../../shared/park.js?v=sohee1"></script>
+    <script defer src="../../../shared/countdown.js"></script>
     <script defer src="../../../shared/hangul/words.js"></script>
-    <script defer src="../../../shared/hangul/controls.js?v=sohee1"></script>
+    <script defer src="../../../shared/hangul/controls.js?v=countdown1"></script>
     <script defer src="game.js"></script>
   </head>
   <body class="memory-mode" data-game="pairs">
@@ -67,29 +69,6 @@
         ><span id="playNote">글자와 그림 짝꿍을 찾아요</span>
       </footer>
     </main>
-    <div
-      class="scene-curtain"
-      id="sceneCurtain"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="sceneLabel"
-      hidden
-    >
-      <button id="sceneCancel">← 돌아가기</button>
-      <div class="scene-load">
-        <img id="sceneAvatar" alt="" />
-        <p class="stage-tag" id="sceneStage">MAGIC ADVENTURE</p>
-        <div
-          class="scene-count"
-          id="sceneCount"
-          role="status"
-          aria-live="polite"
-        >
-          준비!
-        </div>
-        <div class="scene-label" id="sceneLabel">숲속 별빛 대전으로!</div>
-      </div>
-    </div>
     <div
       class="overlay"
       id="result"

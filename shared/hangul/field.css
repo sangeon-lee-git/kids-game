@@ -1954,62 +1954,7 @@ header {
 .dealing .memory-card:nth-child(6) {
   animation-delay: 0.3s;
 }
-/* Stage gate and rewards. */
-.scene-curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  background: radial-gradient(ellipse, #428e84, #183e4def);
-  color: #fff7d2;
-  overflow: hidden;
-}
-.scene-curtain:before {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background: repeating-conic-gradient(
-    from 0deg,
-    #fff1 0 8deg,
-    transparent 8deg 22deg
-  );
-  animation: curtainRays 24s linear infinite;
-}
-.scene-load {
-  position: relative;
-  animation: sceneIn 0.35s both;
-}
-.scene-load img {
-  height: 190px;
-  filter: drop-shadow(0 14px 8px #18394466);
-  animation: heroEnter 0.6s both;
-}
-.scene-load .stage-tag {
-  font-size: 13px;
-  letter-spacing: 3px;
-  font-weight: 900;
-  margin: 12px 0;
-}
-.scene-count {
-  font-size: 80px;
-  line-height: 1.15;
-  font-weight: 900;
-  min-height: 98px;
-  text-shadow: 0 6px 0 #225a56;
-  -webkit-text-stroke: 2px #254b50;
-  paint-order: stroke fill;
-  animation: countPop 0.35s both;
-}
-.scene-count.go {
-  color: #ffe06c;
-}
-.scene-label {
-  font-size: 20px;
-  font-weight: 900;
-  margin-top: 10px;
-}
+/* Stage arrival and rewards. */
 .arrival {
   animation: stageArrive 0.5s both;
 }
@@ -2108,18 +2053,6 @@ header {
   padding: 13px;
   font-size: 17px;
 }
-.scene-curtain button {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  z-index: 1;
-  border: 2px solid #cbe4ce;
-  background: #254f53;
-  color: #fff2c5;
-  border-radius: 15px;
-  padding: 9px 15px;
-  font-size: 13px;
-}
 #parent .card {
   border: 4px solid #f6eab7;
   box-shadow: 0 10px 0 #345e56;
@@ -2142,47 +2075,12 @@ header {
     rotate: 2deg;
   }
 }
-@keyframes sceneIn {
-  from {
-    opacity: 0;
-    translate: 0 15px;
-  }
-  to {
-    opacity: 1;
-    translate: 0 0;
-  }
-}
 @keyframes heroSelected {
   40% {
     transform: translateY(-15px) rotate(-6deg) scale(1.04);
   }
   to {
     transform: translateY(0);
-  }
-}
-@keyframes heroEnter {
-  from {
-    transform: translateX(-160px) rotate(-20deg);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-@keyframes curtainRays {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes countPop {
-  from {
-    scale: 0.45;
-    opacity: 0;
-  }
-  to {
-    scale: 1;
-    opacity: 1;
   }
 }
 @keyframes stageArrive {
@@ -2524,15 +2422,6 @@ header {
     font-size: 11px;
     padding: 8px 11px;
   }
-  .scene-load img {
-    height: 165px;
-  }
-  .scene-count {
-    font-size: 70px;
-  }
-  .scene-label {
-    font-size: 17px;
-  }
   .prize-popup {
     font-size: 19px;
   }
@@ -2667,9 +2556,6 @@ header {
   .float-letter,
   .menu-sky:before,
   .menu-sky:after,
-  .scene-curtain:before,
-  .scene-load img,
-  .scene-count,
   .arrival,
   .prize-popup,
   .reward-star,
@@ -2707,7 +2593,6 @@ header {
   font-weight: 800;
   font-size: 14px;
 }
-#sceneCurtain[hidden],
 [hidden] {
   display: none !important;
 }

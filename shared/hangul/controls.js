@@ -30,13 +30,7 @@ function uiDelay(fn, ms) {
 const reducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function uiTone(kind) {
-  Park.tone(
-    kind === 'win'
-      ? [523, 659, 784, 1046]
-      : kind === 'tick'
-        ? [392]
-        : [659, 880]
-  );
+  Park.tone(kind === 'win' ? [523, 659, 784, 1046] : [659, 880]);
 }
 function stopVoice() {
   Park.hush();
@@ -47,11 +41,8 @@ function say(text, selectedMode = Park.voiceChoice()) {
   Park.narrate([[key, text, 'hangul']], { voice: selectedMode });
 }
 function lockScene() {
-  document.querySelector('main').inert = [
-    'sceneCurtain',
-    'result',
-    'parent',
-  ].some((id) => !$(id).hidden);
+  document.querySelector('main').inert =
+    !$('result').hidden || !$('parent').hidden;
 }
 function openModal(id) {
   lastFocus = document.activeElement;
@@ -89,39 +80,16 @@ function launch(action) {
   cancelTimers();
   $('parent').hidden = true;
   $('result').hidden = true;
-  const curtain = $('sceneCurtain');
-  curtain.hidden = false;
-  $('sceneAvatar').src = hero.image;
-  $('sceneAvatar').alt = hero.name;
-  $('sceneStage').textContent = isBattle ? 'MAGIC ARENA' : 'LETTER PAIRS';
-  $('sceneLabel').textContent = isBattle ? '숲속 별빛 대전' : '한글 짝꿍 카드';
-  $('sceneCount').textContent = reducedMotion() ? '출발!' : '3';
   lockScene();
-  $('sceneCancel').focus();
-  const counts = reducedMotion() ? [] : ['2', '1', '출발!'];
-  counts.forEach((v, i) =>
-    uiDelay(
-      () => {
-        $('sceneCount').textContent = v;
-        uiTone('tick');
-      },
-      (i + 1) * 330
-    )
-  );
-  uiDelay(
-    () => {
-      curtain.hidden = true;
-      lockScene();
-      action();
-      const scene = $(isBattle ? 'arena' : 'memoryGrid');
-      const effect = isBattle ? 'arrival' : 'dealing';
-      scene.classList.remove(effect);
-      void scene.offsetWidth;
-      scene.classList.add(effect);
-      uiDelay(() => scene.classList.remove(effect), 850);
-    },
-    reducedMotion() ? 60 : 1280
-  );
+  ParkCountdown.show(isBattle ? 'MAGIC ARENA' : 'LETTER PAIRS', () => {
+    action();
+    const scene = $(isBattle ? 'arena' : 'memoryGrid');
+    const effect = isBattle ? 'arrival' : 'dealing';
+    scene.classList.remove(effect);
+    void scene.offsetWidth;
+    scene.classList.add(effect);
+    uiDelay(() => scene.classList.remove(effect), 850);
+  });
 }
 function syncSound() {
   sound = Park.rememberedSound();
@@ -143,7 +111,7 @@ function startHangul() {
     if (sound) say('소리를 켰어요.');
     else stopVoice();
   };
-  $('menuButton').onclick = $('sceneCancel').onclick = $('home').onclick = home;
+  $('menuButton').onclick = $('home').onclick = home;
   $('again').onclick = () =>
     launch(() => {
       if (isBattle) round++;
@@ -181,9 +149,7 @@ function startHangul() {
     launch(begin);
   };
   document.addEventListener('keydown', (e) => {
-    const dialog = ['sceneCurtain', 'result', 'parent']
-      .map($)
-      .find((d) => !d.hidden);
+    const dialog = ['result', 'parent'].map($).find((d) => !d.hidden);
     if (!dialog) return;
     if (e.key === 'Escape' && dialog.id === 'parent') {
       closeSettings();

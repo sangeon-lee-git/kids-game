@@ -173,13 +173,18 @@ function victory() {
   };
 }
 function start() {
-  deck = activity.deck().slice(0, 5);
-  round = 0;
-  renderRound();
+  ParkCountdown.show(area.name + ' 구역', () => {
+    deck = activity.deck().slice(0, 5);
+    round = 0;
+    renderRound();
+  });
 }
 at('next').onclick = () => {
   if (!locked) return;
   if (++round === deck.length) victory();
   else renderRound();
 };
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted && ParkCountdown.showing) start();
+});
 start();
