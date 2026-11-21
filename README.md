@@ -6,16 +6,20 @@
 
 50개월 아이가 게임을 고르고 정원이 또는 도겸이와 함께 노는 한국어 놀이공원입니다. 첫 입장 때 `아빠's make`가 잠깐 흘러갑니다. 동작 줄이기를 켠 기기에서는 이동 효과를 생략합니다.
 
-| 구역 | 놀이 | 게임 폴더 |
+## 게임별 기획서
+
+게임 이름을 누르면 놀이 목표, 실제 문제 예시, 힌트와 완료 조건, 검토할 장면을 볼 수 있습니다. 새 기능과 규칙 변경은 해당 기획서를 먼저 수정하고 사용자 검토 후 구현합니다. [기획 검토와 구현 순서](HANDOFF.md#기획-검토와-구현-순서)
+
+| 구역 | 기획서 | 게임 폴더 |
 | --- | --- | --- |
-| 한글 | 숲속 별빛 대전 | [battle](games/hangul/battle/) |
-| 한글 | 한글 짝꿍 카드 | [pairs](games/hangul/pairs/) |
-| 숫자 | 반짝별 세기 | [count](games/numbers/count/) |
-| 숫자 | 칙칙폭폭 숫자 기차 | [train](games/numbers/train/) |
-| 추론 | 알록달록 꽃길 | [pattern](games/inference/pattern/) |
-| 추론 | 꼬마 동물 탐정 | [detective](games/inference/detective/) |
-| 사고력 | 쏙쏙 바구니 | [basket](games/thinking/basket/) |
-| 사고력 | 별 보물 길찾기 | [trail](games/thinking/trail/) |
+| 한글 | [숲속 별빛 대전](games/hangul/battle/DESIGN.md) | [battle](games/hangul/battle/) |
+| 한글 | [한글 짝꿍 카드](games/hangul/pairs/DESIGN.md) | [pairs](games/hangul/pairs/) |
+| 숫자 | [반짝별 세기](games/numbers/count/DESIGN.md) | [count](games/numbers/count/) |
+| 숫자 | [칙칙폭폭 숫자 기차](games/numbers/train/DESIGN.md) | [train](games/numbers/train/) |
+| 추론 | [알록달록 꽃길](games/inference/pattern/DESIGN.md) | [pattern](games/inference/pattern/) |
+| 추론 | [꼬마 동물 탐정](games/inference/detective/DESIGN.md) | [detective](games/inference/detective/) |
+| 사고력 | [쏙쏙 바구니](games/thinking/basket/DESIGN.md) | [basket](games/thinking/basket/) |
+| 사고력 | [별 보물 길찾기](games/thinking/trail/DESIGN.md) | [trail](games/thinking/trail/) |
 
 ## 공통 캐릭터와 게임 관리
 
