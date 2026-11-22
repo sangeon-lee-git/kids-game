@@ -109,7 +109,9 @@ const Park = (() => {
   }
   function voiceChoice() {
     const value = read('voice');
-    return ['sohee', 'classic', 'device'].includes(value) ? value : 'sohee';
+    return ['sohee', 'vivian', 'classic', 'device'].includes(value)
+      ? value
+      : 'sohee';
   }
   function narrate(lines, { voice = voiceChoice(), preview = false } = {}) {
     hush();
@@ -144,7 +146,7 @@ const Park = (() => {
       }
       function recording(prefix, fallback) {
         if (token !== generation) return;
-        const audio = new Audio(url('shared/voice/' + prefix + path + '.ogg'));
+        const audio = new Audio(url('shared/voice/' + prefix + path + '.ogg?v=voices2'));
         clip = audio;
         audio.onended = () => play(i + 1);
         audio.play().catch(() => {
@@ -154,8 +156,11 @@ const Park = (() => {
       const classic = () => recording('', () => device());
       if (voice === 'device' && window.speechSynthesis) {
         device(() => recording('', () => {}));
-      } else if (voice === 'sohee' && Object.hasOwn(SoheeLines, path)) {
-        recording('sohee/', classic);
+      } else if (
+        (voice === 'sohee' || voice === 'vivian') &&
+        Object.hasOwn(SoheeLines, path)
+      ) {
+        recording(voice + '/', classic);
       } else classic();
     }
     play(0);

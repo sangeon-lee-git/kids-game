@@ -94,14 +94,22 @@
 
 소희 음성은 [shared/voice/sohee](shared/voice/sohee/) 아래 같은 키의 Ogg를 사용한다. [lines.js](shared/voice/sohee/lines.js)는 실제로 읽은 한국어 대본을 담는다. 예를 들어 숫자 세기 키는 `park/count`이고 파일은 [park/count.ogg](shared/voice/sohee/park/count.ogg)다. 문장을 변경할 때는 대본과 녹음을 함께 갱신한다. 게임에는 생성한 음성을 넣으며 별도 API 키 없이 재생된다.
 
-현재 소희 녹음은 Qwen3-TTS 1.7B CustomVoice의 한국어 화자 `sohee`로 제작했다. 추가 제작 시 같은 화자로 아이에게 천천히 말을 건네는 톤을 사용하고, 앞뒤가 잘리지 않았는지와 기존 클립과의 음량 차이를 확인한다. 한글 그림 문제의 대사 예시는 “가방은 ‘가’로 시작해. ‘가’를 골라 봐.”다. [소희 모델](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice) · [F1 모델](https://huggingface.co/supertone-oss-archive/supertonic-3)
+소희와 Vivian 녹음은 Qwen3-TTS 1.7B CustomVoice로 제작했다. 추가 제작 시 아이에게 천천히 말을 건네는 톤을 사용하고, 앞뒤가 잘리지 않았는지와 기존 클립과의 음량 차이를 확인한다. 한글 그림 문제의 대사 예시는 “가방은 ‘가’로 시작해. ‘가’를 골라 봐.”다. [소희 모델](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice) · [F1 모델](https://huggingface.co/supertone-oss-archive/supertonic-3)
+
+### 소희 +2반음과 Vivian 밝은 목소리
+
+- **승인한 범위** — 2026년 11월 22일, 사용자가 소희 +2반음과 밝게 조정한 Vivian의 안내·칭찬 샘플을 듣고 적용을 요청했다. 소희와 Vivian을 여덟 게임에서 선택할 수 있게 한다.
+- **음성 파일** — 두 화자 모두 같은 한국어 대본 키 62개를 24 kHz 단일 채널 Ogg로 제공한다. 소희는 기존 녹음을 Rubber Band 필터로 +2반음 조정하고 길이와 평균 음량을 원본에 맞췄다. Vivian은 Qwen3-TTS로 같은 대사를 만들고 +1반음과 약한 고음역(+1.5 dB, 중심 2.5 kHz) 보정을 적용했다. Vivian의 기본 언어는 중국어이므로 한국어 발음은 실제 청취로 확인한다.
+- **선택과 재생** — 첫 화면의 목소리 목록과 두 한글 게임의 보호자 설정에 Vivian을 추가한다. 선택값은 여덟 게임에서 공유하고, 공통 재생 코드가 소희·Vivian의 같은 키를 각 화자 폴더에서 읽는다. 파일 주소의 `voices2` 버전으로 이전 녹음 캐시를 갱신한다.
+- **파일 검증** — 두 화자 각 62개 키의 누락·중복을 확인했다. 124개 Ogg의 디코딩, 길이, 음량, 클리핑을 검사했고, 소희 조정본의 길이와 음량을 원본과 비교했다. 공통 재생 경로와 세 목소리 선택 메뉴는 Node 검사로 확인했다.
+- **플레이 점검 장면** — 첫 화면에서 두 화자 미리 듣기, 여덟 게임 첫 안내, 정답·완료 안내, 한글 글자 발음과 동물 단서, 다시 시작, 소리 끄기와 선택값 유지를 확인한다.
 
 ## 로컬 검증과 배포
 
 Windows에서 아래 명령을 실행한 뒤 [로컬 첫 화면](http://localhost:8000/)을 연다. 다른 PC에서는 이 저장소를 복제한 폴더가 기준이다.
 
 ```powershell
-cd D:\workspace\hangul-game\kids-game
+cd <작업 브랜치의 worktree 경로>
 git status -sb
 python -m http.server 8000
 ```
@@ -113,4 +121,4 @@ python -m http.server 8000
 | 소리 | 같은 문장으로 목소리를 비교한다. 선택을 저장하고 게임에 들어가 다시 듣기와 소리 끄기를 확인한다. |
 | 저장과 복귀 | 완료 후 다시 놀 수 있다. 메인으로 돌아오면 해당 입장권에 완료 도장이 표시된다. |
 | 화면 크기 | PC와 작은 세로 화면에서 선택지, 캐릭터 이름과 애착인형이 겹치지 않는지 본다. |
-| 실제 배포 | `git push origin main` 후 [Actions](https://github.com/sangeon-lee-git/kids-game/actions)에서 해당 커밋의 Pages 배포 성공을 확인한다. 공개 주소에서 변경한 화면을 한 번 더 연다. |
+| 실제 배포 | 작업 브랜치를 푸시하고 PR로 `main`에 반영한 뒤 [Actions](https://github.com/sangeon-lee-git/kids-game/actions)에서 해당 커밋의 Pages 배포 성공을 확인한다. 공개 주소에서 변경한 화면을 한 번 더 연다. |
