@@ -1,6 +1,6 @@
 # 별빛 놀이공원 개발 인수인계
 
-2026년 11월 21일 기준. 정원이와 도겸이가 함께하는 50개월 아이용 HTML 학습 게임 모음이다. 다음 작업은 `kids-game`의 `main`에서 시작한다.
+2026년 11월 21일 기준. 정원이와 도겸이가 함께하는 50개월 아이용 HTML 학습 게임 모음이다. 다음 변경 작업은 최신 `origin/main`에서 새 작업 브랜치와 별도 worktree를 만들어 시작한다.
 
 | 항목 | 위치 |
 | --- | --- |
@@ -8,14 +8,14 @@
 | 소스 저장소 | [sangeon-lee-git/kids-game](https://github.com/sangeon-lee-git/kids-game) |
 | 지정한 Windows 작업 사본 | `D:\workspace\hangul-game\kids-game` |
 | 배포 방식 | GitHub Pages가 `main` 브랜치의 루트 `/`를 게시한다. 빌드 단계는 없다. |
-| 이전 한글 게임 | [test 저장소](https://github.com/sangeon-lee-git/test)에서 대전과 짝꿍 카드를 가져왔다. 새 기능은 위의 작업 사본에 반영한다. |
+| 이전 한글 게임 | [test 저장소](https://github.com/sangeon-lee-git/test)에서 대전과 짝꿍 카드를 가져왔다. 새 기능은 위 저장소의 새 작업 브랜치에서 반영한다. |
 
 ## 이어받는 기준 버전
 
 - [놀이공원 첫 배포](https://github.com/sangeon-lee-git/kids-game/commit/3f36e7286ff100fd4b1550a47b6ace0864e60862)에서 네 구역, 여덟 게임, 캐릭터 두 명과 애착인형을 한 저장소로 묶었다.
 - [공통 목소리 업데이트](https://github.com/sangeon-lee-git/kids-game/commit/2307ca193922210230db1941e335a7514dfb046d)에서는 한국어 소희를 기본 화자로 설정했다. 첫 화면의 **목소리 → 미리 듣기 → 이 목소리로 놀기**에서 소희·기존 F1·기기 한국어 음성을 비교하고 선택한다. 선택값은 여덟 게임에서 함께 사용한다.
 - **확인한 범위** — 두 캐릭터로 게임 여덟 개의 완료·힌트·다시 시작을 검사했다. 브라우저에서 도겸이의 한글 대전과 길찾기, 작은 세로 화면에서 정원이의 숫자 기차를 플레이했다. 소희 62개와 F1 62개가 연결되며, 소희 녹음은 24 kHz 모노 Ogg로 디코딩과 음량 검사를 통과했다.
-- **다음 작업을 시작할 때** — 작업 사본에서 `git status -sb`와 `git log -1 --oneline`을 확인한다. 수정할 게임은 아래 표에서 찾고, 여러 게임에 영향을 주는 변경은 메인 화면과 해당 구역까지 함께 검증한다.
+- **다음 작업을 시작할 때** — 작업 사본에서 `git status -sb`와 `git log -1 --oneline`을 확인한다. [Git 작업 절차](README.md#git-작업-절차)에 따라 새 브랜치와 worktree를 만든 뒤 수정할 게임을 아래 표에서 찾는다. 여러 게임에 영향을 주는 변경은 메인 화면과 해당 구역까지 함께 검증한다.
 
 ## 기획 검토와 구현 순서
 
@@ -98,10 +98,9 @@
 
 ## 로컬 검증과 배포
 
-Windows에서 아래 명령을 실행한 뒤 [로컬 첫 화면](http://localhost:8000/)을 연다. 다른 PC에서는 이 저장소를 복제한 폴더가 기준이다.
+작업 브랜치의 worktree 루트에서 아래 명령을 실행한 뒤 [로컬 첫 화면](http://localhost:8000/)을 연다. 다른 PC에서는 이 저장소를 복제한 폴더가 기준이다.
 
 ```powershell
-cd D:\workspace\hangul-game\kids-game
 git status -sb
 python -m http.server 8000
 ```
@@ -113,4 +112,4 @@ python -m http.server 8000
 | 소리 | 같은 문장으로 목소리를 비교한다. 선택을 저장하고 게임에 들어가 다시 듣기와 소리 끄기를 확인한다. |
 | 저장과 복귀 | 완료 후 다시 놀 수 있다. 메인으로 돌아오면 해당 입장권에 완료 도장이 표시된다. |
 | 화면 크기 | PC와 작은 세로 화면에서 선택지, 캐릭터 이름과 애착인형이 겹치지 않는지 본다. |
-| 실제 배포 | `git push origin main` 후 [Actions](https://github.com/sangeon-lee-git/kids-game/actions)에서 해당 커밋의 Pages 배포 성공을 확인한다. 공개 주소에서 변경한 화면을 한 번 더 연다. |
+| 실제 배포 | 작업 브랜치를 PR 또는 검토된 병합으로 `main`에 반영한 뒤 [Actions](https://github.com/sangeon-lee-git/kids-game/actions)에서 해당 커밋의 Pages 배포 성공을 확인한다. 공개 주소에서 변경한 화면을 한 번 더 연다. |
