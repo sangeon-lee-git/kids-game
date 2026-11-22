@@ -49,7 +49,7 @@ git status -sb
 
 ## 음성과 글꼴
 
-첫 화면의 **목소리**에서 같은 문장을 미리 듣고 여덟 게임에 쓸 목소리를 고릅니다. 기본값은 Qwen3-TTS 1.7B의 한국어 화자 소희입니다. 한글 안내와 칭찬은 아이에게 건네는 문장으로 다시 썼습니다. 게임은 미리 생성한 Ogg 파일을 재생합니다. 실제 대사는 [소희 음성 목록](shared/voice/sohee/lines.js)에 있습니다. [Qwen3-TTS 모델 · Apache 2.0](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice)
+첫 화면의 **목소리**에서 같은 문장을 미리 듣고 여덟 게임에 쓸 목소리를 고릅니다. 기본값은 Qwen3-TTS 1.7B의 한국어 화자 소희이며, 기존 녹음보다 2반음 높였습니다. 같은 모델의 Vivian도 선택할 수 있습니다. Vivian은 한국어 대사를 경쾌하게 생성하고 1반음과 약한 고음역 보정을 더했습니다. 한글 안내와 칭찬은 아이에게 건네는 문장으로 다시 썼습니다. 게임은 미리 생성한 Ogg 파일을 재생하며, 두 화자의 실제 대사는 [음성 대본](shared/voice/sohee/lines.js)을 공유합니다. [Qwen3-TTS 모델 · Apache 2.0](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice)
 
 기존 목소리 F1도 선택할 수 있습니다. 한글 안내 46개와 새 놀이·동물 단서 16개를 Supertonic 3 F1으로 생성했습니다. 모델 revision은 `aafc6e32416a594460b32413efc49d7fe4ce6d46`입니다. 기기 한국어 음성을 선택하면 운영체제 또는 브라우저의 음성 서비스를 사용합니다. [Supertonic 공식 코드 · MIT](https://github.com/supertone-oss-archive/supertonic) · [F1 모델 · OpenRAIL-M](https://huggingface.co/supertone-oss-archive/supertonic-3)
 
