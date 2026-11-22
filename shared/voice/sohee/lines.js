@@ -9,7 +9,6 @@ const SoheeLines = {
   "park/win": "별이 다섯 개야! 정말 잘했어.",
   "park/retry": "한 번 더 해 볼까? 천천히 해도 돼.",
   "park/right": "그래, 맞았어! 별 하나를 모았네.",
-  "park/choose": "함께 놀 친구를 골라 줘.",
   "park/rabbit": "귀가 길고 당근을 좋아해.",
   "park/cat": "야옹 하고 울고 수염이 있어.",
   "park/duck": "꽥꽥 울고 물에서 헤엄쳐.",

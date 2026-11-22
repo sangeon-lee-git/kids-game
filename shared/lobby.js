@@ -75,6 +75,7 @@ function showTickets(area) {
   );
 }
 function showFriends(game) {
+  Park.hush();
   activeGame = game;
   byId('lobby').hidden = true;
   byId('characterScreen').hidden = false;
@@ -106,7 +107,6 @@ function showFriends(game) {
   }
   byId('chooseTitle').focus({ preventScroll: true });
   window.scrollTo(0, 0);
-  Park.narrate([['choose', '함께 놀 친구를 골라 줘.']]);
 }
 function route() {
   const hash = location.hash.slice(1);

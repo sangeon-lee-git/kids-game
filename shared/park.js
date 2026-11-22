@@ -109,7 +109,7 @@ const Park = (() => {
   }
   function voiceChoice() {
     const value = read('voice');
-    return ['sohee', 'vivian', 'classic', 'device'].includes(value)
+    return ['sohee', 'vivian', 'device'].includes(value)
       ? value
       : 'sohee';
   }
@@ -122,10 +122,12 @@ const Park = (() => {
       const [key, words, group = 'park'] = lines[i];
       const path = group + '/' + key;
       function device(onError) {
-        if (token !== generation || !window.speechSynthesis) return;
-        const u = new SpeechSynthesisUtterance(
-          voice === 'classic' ? words : SoheeLines[path] || words
-        );
+        if (token !== generation) return;
+        if (!window.speechSynthesis) {
+          onError?.();
+          return;
+        }
+        const u = new SpeechSynthesisUtterance(SoheeLines[path] || words);
         u.lang = 'ko-KR';
         u.rate = 0.96;
         const korean = window.speechSynthesis
@@ -144,24 +146,23 @@ const Park = (() => {
           };
         window.speechSynthesis.speak(u);
       }
-      function recording(prefix, fallback) {
+      function recording(speaker, fallback) {
         if (token !== generation) return;
-        const audio = new Audio(url('shared/voice/' + prefix + path + '.ogg?v=voices2'));
+        const audio = new Audio(url('shared/voice/' + speaker + '/' + path + '.ogg?v=voices3'));
         clip = audio;
         audio.onended = () => play(i + 1);
         audio.play().catch(() => {
           if (token === generation) fallback();
         });
       }
-      const classic = () => recording('', () => device());
-      if (voice === 'device' && window.speechSynthesis) {
-        device(() => recording('', () => {}));
-      } else if (
-        (voice === 'sohee' || voice === 'vivian') &&
-        Object.hasOwn(SoheeLines, path)
-      ) {
-        recording(voice + '/', classic);
-      } else classic();
+      const hasRecording = Object.hasOwn(SoheeLines, path);
+      if (voice === 'device') {
+        device(() => {
+          if (hasRecording) recording('sohee', () => {});
+        });
+      } else if (hasRecording) {
+        recording(voice, () => device());
+      } else device();
     }
     play(0);
   }
