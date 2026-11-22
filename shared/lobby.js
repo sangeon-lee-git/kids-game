@@ -84,6 +84,10 @@ function showFriends(game) {
   for (const [key, hero] of Object.entries(Park.characters)) {
     const a = document.createElement('a');
     a.className = 'hero-choice ' + key;
+    a.style.setProperty('--hero-border', hero.colors.border);
+    a.style.setProperty('--hero-background-light', hero.colors.backgroundLight);
+    a.style.setProperty('--hero-background-dark', hero.colors.backgroundDark);
+    a.style.setProperty('--hero-text', hero.colors.text);
     a.href = Park.gameUrl(game, key);
     a.setAttribute(
       'aria-label',

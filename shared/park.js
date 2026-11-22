@@ -3,20 +3,7 @@
 const Park = (() => {
   const base = new URL('../', document.currentScript.src);
   const url = (path) => new URL(path, base).href;
-  const characters = {
-    jeongwon: {
-      name: '정원이',
-      image: url('shared/characters/jeongwon.png'),
-      pet: '토끼',
-      petImage: url('shared/characters/rabbit.png'),
-    },
-    dogyeom: {
-      name: '도겸이',
-      image: url('shared/characters/dogyeom.png'),
-      pet: '강아지',
-      petImage: url('shared/characters/puppy.png'),
-    },
-  };
+  const characters = CharacterCatalog;
   const areas = {
     hangul: { name: '한글', symbol: '가', color: '#ffabbb' },
     numbers: { name: '숫자', symbol: '3', color: '#ffcb7b' },
