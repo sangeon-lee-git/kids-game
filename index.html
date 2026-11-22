@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#191632" />
     <title>정원이와 도겸이의 별빛 놀이공원</title>
-    <link rel="stylesheet" href="shared/park.css?v=3d1" />
-    <link rel="preload" as="image" href="shared/art/park-panorama.jpg" />
+    <link rel="stylesheet" href="shared/park.css?v=animated-park1" />
+    <link rel="preload" as="image" href="shared/art/park-panorama-clearing.png" />
     <script defer src="shared/voice/sohee/lines.js?v=voices3"></script>
     <script src="shared/characters/catalog.js?v=3d1" defer></script>
     <script src="shared/park.js?v=voices3" defer></script>
-    <script src="shared/lobby.js?v=voices3" defer></script>
+    <script src="shared/lobby.js?v=animated-park2" defer></script>
   </head>
   <body>
     <div class="park-frame">
@@ -30,6 +30,84 @@
       </header>
       <main id="lobby">
         <section class="panorama" aria-labelledby="parkTitle">
+          <svg class="park-scene" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="wheelGold" x2="0" y2="1"><stop stop-color="#fff3b3"/><stop offset=".52" stop-color="#f6bc60"/><stop offset="1" stop-color="#a65a54"/></linearGradient>
+              <linearGradient id="cabinPink" x2="0" y2="1"><stop stop-color="#ffdcab"/><stop offset=".45" stop-color="#f68b9d"/><stop offset="1" stop-color="#a34f7e"/></linearGradient>
+              <linearGradient id="roof" x2="0" y2="1"><stop stop-color="#fff4c2"/><stop offset=".55" stop-color="#ffbb76"/><stop offset="1" stop-color="#aa5e76"/></linearGradient>
+              <linearGradient id="base" x2="0" y2="1"><stop stop-color="#ffdda0"/><stop offset="1" stop-color="#b46d69"/></linearGradient>
+              <g id="cabin">
+                <path d="M-26 -8Q0 -22 26 -8L23 17Q0 28 -23 17Z" fill="url(#cabinPink)" stroke="#7b4b6c" stroke-width="3"/>
+                <path d="M-19 -8Q0 -16 19 -8" fill="none" stroke="#fff5d2" stroke-width="4" stroke-linecap="round"/>
+                <path d="M-13 1Q0 -4 13 1L11 11Q0 16 -11 11Z" fill="#ffe8a9" opacity=".85"/>
+                <circle cy="-15" r="4" fill="#ffe498"/>
+              </g>
+              <g id="horse">
+                <path d="M-31 10L-39 -2L-31 -18L-17 -17L-9 -8L7 -10L22 -23L33 -19L25 -6L34 3L18 7L12 22L5 22L2 7L-17 8L-20 24L-27 24Z" fill="#fff1cb" stroke="#9d6583" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M-28 -14L-38 -25L-28 -22L-18 -17M12 -10Q20 -4 21 5" fill="none" stroke="#f29d8e" stroke-width="6" stroke-linecap="round"/>
+                <path d="M-12 -5Q-2 -11 11 -5L7 4L-10 5Z" fill="#f08b95" stroke="#bd6380" stroke-width="2"/>
+                <circle cx="-27" cy="-9" r="2" fill="#563c62"/>
+              </g>
+            </defs>
+            <g class="park-sparkles" fill="#ffeaa7">
+              <circle cx="963" cy="187" r="3"/><circle cx="1115" cy="122" r="3"/><circle cx="1290" cy="186" r="3"/>
+              <circle cx="1615" cy="459" r="3"/>
+            </g>
+            <g class="park-fireflies" fill="#ffeaa7">
+              <circle cx="1021" cy="653" r="4"/><circle cx="1252" cy="685" r="3"/><circle cx="1580" cy="469" r="3"/>
+            </g>
+            <g class="wheel-ride">
+              <ellipse cx="1190" cy="734" rx="190" ry="25" fill="#132842" opacity=".4"/>
+              <path d="M1190 421L1085 730M1190 421L1290 730" fill="none" stroke="#694660" stroke-width="24" stroke-linecap="round"/>
+              <path d="M1190 421L1085 730M1190 421L1290 730" fill="none" stroke="url(#wheelGold)" stroke-width="15" stroke-linecap="round"/>
+              <path d="M1084 714H1292" stroke="#ffe0a0" stroke-width="15" stroke-linecap="round"/>
+              <g class="ferris-rotor">
+                <circle cx="1190" cy="421" r="173" fill="none" stroke="#452e64" stroke-width="29" opacity=".7"/>
+                <circle cx="1190" cy="421" r="173" fill="none" stroke="url(#wheelGold)" stroke-width="17"/>
+                <circle cx="1190" cy="421" r="148" fill="none" stroke="#ffd494" stroke-width="5"/>
+                <path d="M1190 248V594M1017 421H1363M1068 299L1312 543M1312 299L1068 543" stroke="#ffd397" stroke-width="10" stroke-linecap="round"/>
+                <path d="M1190 248V594M1017 421H1363M1068 299L1312 543M1312 299L1068 543" stroke="#a36172" stroke-width="3"/>
+                <circle cx="1190" cy="421" r="42" fill="#7c4770" stroke="#ffe1a0" stroke-width="9"/>
+                <circle cx="1190" cy="421" r="19" fill="#ffdc83"/>
+                <g class="ferris-lights" fill="#ffec9d" stroke="#fff8d0" stroke-width="2">
+                  <circle cx="1190" cy="248" r="7"/><circle cx="1312" cy="299" r="7"/><circle cx="1363" cy="421" r="7"/><circle cx="1312" cy="543" r="7"/>
+                  <circle cx="1190" cy="594" r="7"/><circle cx="1068" cy="543" r="7"/><circle cx="1017" cy="421" r="7"/><circle cx="1068" cy="299" r="7"/>
+                </g>
+                <g transform="translate(1190 248)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+                <g transform="translate(1312 299)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+                <g transform="translate(1363 421)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+                <g transform="translate(1312 543)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+                <g transform="translate(1190 594)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+                <g transform="translate(1068 543)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+                <g transform="translate(1017 421)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+                <g transform="translate(1068 299)"><g class="ferris-cabin"><use href="#cabin"/></g></g>
+              </g>
+              <circle cx="1190" cy="421" r="27" fill="#ffe4a1" stroke="#8e5874" stroke-width="8"/>
+              <circle cx="1190" cy="421" r="11" fill="#fff8c7"/>
+            </g>
+            <g class="carousel-ride">
+              <ellipse cx="1450" cy="760" rx="205" ry="47" fill="#142942" opacity=".42"/>
+              <ellipse cx="1450" cy="737" rx="188" ry="44" fill="url(#base)" stroke="#8e5069" stroke-width="9"/>
+              <ellipse cx="1450" cy="719" rx="177" ry="29" fill="#fbdba2" stroke="#fff1bd" stroke-width="5"/>
+              <path d="M1450 512V715" stroke="#8d5570" stroke-width="29"/>
+              <path d="M1450 512V715" stroke="#ffe9ac" stroke-width="17"/>
+              <g class="carousel-horses">
+                <g class="carousel-horse" style="--phase: 0s" transform="translate(1298 666)"><use href="#horse"/></g>
+                <g class="carousel-horse" style="--phase: -2.4s" transform="translate(1450 636)"><use href="#horse"/></g>
+                <g class="carousel-horse" style="--phase: -4.8s" transform="translate(1602 666)"><use href="#horse"/></g>
+                <g class="carousel-horse" style="--phase: -7.2s" transform="translate(1450 708)"><use href="#horse"/></g>
+              </g>
+              <path d="M1272 620Q1450 584 1628 620L1607 640Q1450 606 1293 640Z" fill="#9f5e76" stroke="#ffe3a0" stroke-width="8"/>
+              <path d="M1268 620Q1300 556 1450 509Q1600 556 1632 620Q1450 596 1268 620Z" fill="url(#roof)" stroke="#ffe8aa" stroke-width="8"/>
+              <path d="M1321 605Q1360 551 1450 510Q1403 550 1395 602M1450 510Q1530 548 1559 607" fill="#ffeab4" opacity=".72"/>
+              <path d="M1450 509V480" stroke="#ffe6a5" stroke-width="9" stroke-linecap="round"/>
+              <path d="M1450 478L1458 497L1479 500L1463 515L1467 536L1450 526L1433 536L1437 515L1421 500L1442 497Z" fill="#ffe59b" stroke="#bc6d71" stroke-width="4"/>
+              <g class="carousel-lights" fill="#fff0ae">
+                <circle cx="1293" cy="629" r="7"/><circle cx="1328" cy="619" r="7"/><circle cx="1365" cy="614" r="7"/><circle cx="1406" cy="610" r="7"/>
+                <circle cx="1450" cy="608" r="7"/><circle cx="1494" cy="610" r="7"/><circle cx="1535" cy="614" r="7"/><circle cx="1572" cy="619" r="7"/><circle cx="1607" cy="629" r="7"/>
+              </g>
+            </g>
+          </svg>
           <div class="title-block">
             <p class="family">
               <span aria-hidden="true">✦</span> 정원이와 도겸이의
