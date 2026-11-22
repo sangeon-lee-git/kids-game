@@ -96,8 +96,6 @@ function showFriends(game) {
     a.innerHTML =
       '<div class="pedestal"><img alt="" src="' +
       hero.image +
-      '"><img class="plush" alt="" src="' +
-      hero.petImage +
       '"></div><strong>' +
       hero.name +
       '</strong><small class="pet-name">' +

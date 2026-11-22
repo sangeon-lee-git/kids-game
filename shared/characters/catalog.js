@@ -9,7 +9,7 @@ const CharacterCatalog = (() => {
   return {
     jeongwon: {
       name: '정원이',
-      image: image('jeongwon.png'),
+      image: image('jeongwon-3d-hugging-rabbit.png'),
       pet: '토끼',
       petImage: image('rabbit.png'),
       colors: {
@@ -21,7 +21,7 @@ const CharacterCatalog = (() => {
     },
     dogyeom: {
       name: '도겸이',
-      image: image('dogyeom.png'),
+      image: image('dogyeom-3d-hugging-puppy.png'),
       pet: '강아지',
       petImage: image('puppy.png'),
       colors: {

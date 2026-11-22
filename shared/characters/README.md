@@ -4,8 +4,10 @@
 
 | ID | 이름 | 캐릭터 그림 | 인형 그림 |
 | --- | --- | --- | --- |
-| `jeongwon` | 정원이 | `jeongwon.png` | `rabbit.png` |
-| `dogyeom` | 도겸이 | `dogyeom.png` | `puppy.png` |
+| `jeongwon` | 정원이 | `jeongwon-3d-hugging-rabbit.png` | `rabbit.png` |
+| `dogyeom` | 도겸이 | `dogyeom-3d-hugging-puppy.png` | `puppy.png` |
+
+현재 캐릭터 그림은 인형을 안은 3D 전신 이미지다. 기존 2D 그림 `jeongwon.png`, `dogyeom.png`는 이 폴더에 보존했다. 별도 인형 그림은 게임의 작은 표시 등에 사용한다.
 
 ## 그림이나 설정 바꾸기
 

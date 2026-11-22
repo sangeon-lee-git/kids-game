@@ -502,15 +502,6 @@ a:focus-visible,
   position: relative;
   filter: drop-shadow(0 4px 2px #5c426033);
 }
-.pedestal .plush {
-  position: absolute;
-  right: 4%;
-  bottom: 5%;
-  width: 28%;
-  height: 37%;
-  object-fit: contain;
-  filter: drop-shadow(0 3px 1px #76597555);
-}
 .hero-choice strong {
   font: 32px var(--font);
   margin-top: 6px;

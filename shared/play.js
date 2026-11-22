@@ -156,8 +156,6 @@ function victory() {
   result.innerHTML =
     '<div class="victory-stars" aria-label="별 다섯 개">★★★★★</div><div class="result-portraits"><img src="' +
     hero.image +
-    '" alt=""><img src="' +
-    hero.petImage +
     '" alt=""></div>' +
     '<h2 tabindex="-1">' +
     hero.name +
