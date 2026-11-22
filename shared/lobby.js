@@ -159,6 +159,9 @@ window.addEventListener('hashchange', route);
 window.addEventListener('pageshow', (event) => {
   if (event.persisted) route();
 });
+document.addEventListener('visibilitychange', () => {
+  document.body.classList.toggle('park-paused', document.hidden);
+});
 route();
 if (
   location.hash ||
