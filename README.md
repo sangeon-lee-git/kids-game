@@ -6,6 +6,20 @@
 
 50개월 아이가 게임을 고르고 정원이 또는 도겸이와 함께 노는 한국어 놀이공원입니다. 첫 입장 때 `아빠's make`가 잠깐 흘러갑니다. 동작 줄이기를 켠 기기에서는 이동 효과를 생략합니다.
 
+## Git 작업 절차
+
+새 변경은 `main`에서 바로 수정하지 않고 작업별 브랜치에서 진행합니다. 시작 전에 `git status -sb`로 기존 수정을 확인하세요. 공유 작업 사본에 다른 작업의 미커밋 변경이 있으면 별도 worktree를 사용해 그대로 보존합니다.
+
+```powershell
+$taskName = 'character-animation' # 작업에 맞게 변경
+git fetch origin main
+git worktree add -b "work/$taskName" "../kids-game-$taskName" origin/main
+cd "../kids-game-$taskName"
+git status -sb
+```
+
+작업 브랜치에서 기획 검토, 구현, 검증, 커밋을 마친 뒤 브랜치를 푸시하고 PR 또는 검토된 병합으로 `main`에 반영합니다. GitHub Pages는 `main`을 게시하므로 병합 후 [Actions](https://github.com/sangeon-lee-git/kids-game/actions)에서 배포 결과를 확인합니다. 다른 작업의 변경은 함께 커밋하지 않습니다. Codex 작업 규칙은 [AGENTS.md](AGENTS.md)에 있습니다.
+
 ## 게임별 기획서
 
 게임 이름을 누르면 놀이 목표, 실제 문제 예시, 힌트와 완료 조건, 검토할 장면을 볼 수 있습니다. 새 기능과 규칙 변경은 해당 기획서를 먼저 수정하고 사용자 검토 후 구현합니다. [기획 검토와 구현 순서](HANDOFF.md#기획-검토와-구현-순서)
